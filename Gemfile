@@ -37,6 +37,8 @@ gem 'autoprefixer-rails'
 gem 'bootstrap'
 # simple form
 gem 'simple_form'
+# devise user authentification
+gem 'devise'
 
 # Use Capistrano for deployment
 # gem 'capistrano-rails', group: :development
