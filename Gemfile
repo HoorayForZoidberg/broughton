@@ -39,6 +39,8 @@ gem 'bootstrap'
 gem 'simple_form'
 # devise user authentification
 gem 'devise'
+# manage secret API keys
+gem 'figaro'
 
 # Use Capistrano for deployment
 # gem 'capistrano-rails', group: :development
@@ -58,6 +60,8 @@ group :development do
   # Spring speeds up development by keeping your application running in the background. Read more: https://github.com/rails/spring
   gem 'spring'
   gem 'spring-watcher-listen', '~> 2.0.0'
+  # letter opener to test mailing in development
+  gem 'letter_opener'
 end
 
 # Windows does not include zoneinfo files, so bundle the tzinfo-data gem
