@@ -1,0 +1,7 @@
+<div class="navbar-broughton">
+  <% if user_signed_in? %>
+    <%= link_to destroy_user_session_path, method: :delete do %>
+      <button type="button" class="btn btn-outline-danger">Logout</button>
+    <% end %>
+  <% end %>
+</div>
