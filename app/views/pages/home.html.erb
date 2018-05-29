@@ -23,7 +23,9 @@
       <button class="btn btn-outline-primary">Download Report</button>
     </div>
     <div class="col-xs-12 col-sm-3">
-      <button class="btn btn-outline-primary">Contact Tenants</button>
+      <%= link_to new_message_path do %>
+        <button class="btn btn-outline-primary">Contact Tenants</button>
+      <% end %>
     </div>
   </div>
 </div>
