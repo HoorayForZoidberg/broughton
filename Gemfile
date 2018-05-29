@@ -41,6 +41,8 @@ gem 'simple_form'
 gem 'devise'
 # manage secret API keys
 gem 'figaro'
+# captcha protection for contact forms
+gem 'recaptcha', require: 'recaptcha/rails'
 
 # Use Capistrano for deployment
 # gem 'capistrano-rails', group: :development

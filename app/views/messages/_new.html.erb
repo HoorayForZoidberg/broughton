@@ -1,0 +1,12 @@
+<%= simple_form_for @message, url: create_message_url do |f| %>
+  <%= @message.errors.full_messages.join(', ') %>
+
+  <div class="form-inputs">
+    <%= f.input :name, label: 'Your name', placeholder: 'Joe Bags' %>
+    <%= f.input :email, label: 'Your email address', placeholder: 'joe@example.com' %>
+    <%= f.input :body, as: :text, label: 'Your message', placeholder: "Let's have some cake!" %>
+  </div>
+  <%= recaptcha_tags %>
+  <br>
+  <%= f.button :submit, 'Send', class: "btn-block btn-outline-primary" %>
+<% end %>
