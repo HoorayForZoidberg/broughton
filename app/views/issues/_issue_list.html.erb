@@ -1,0 +1,60 @@
+<div class="my-3">
+  <div>
+    <h2>Current Issues</h2>
+    <%= render 'issues/new_issue_modal.html.erb' %>
+  </div>
+  <% @current_issues.each do |issue| %>
+    <div class="container-fluid py-2 border-top border-bottom">
+      <div class="row">
+        <div class="col-xs-12 col-sm-6 clickable">
+          <strong>
+            <i class="fas fa-angle-right display-change"></i>
+            <i class="fas fa-caret-down d-none display-change"></i>
+            <%= issue.title.titleize %>
+          </strong>
+        </div>
+        <div class="col-sm-3">
+          <%= "posted by: Apartment #{issue.user.apartment_number}" %>
+        </div>
+        <div class="col-sm-3">
+          <%= "occured on: #{issue.start_date}" %>
+        </div>
+      </div>
+      <div class="d-none display-change pt-1">
+        <p>
+          <%= issue.body %>
+        </p>
+      </div>
+    </div>
+  <% end %>
+</div>
+<div class="my-3">
+  <h2>Past Issues</h2>
+  <% @past_issues.each do |issue| %>
+    <div class="container-fluid py-2 border-top border-bottom">
+      <div class="row">
+        <div class="col-xs-12 col-sm-6 clickable">
+          <strong>
+            <i class="fas fa-angle-right display-change"></i>
+            <i class="fas fa-caret-down d-none display-change"></i>
+            <%= issue.title.titleize %>
+          </strong>
+        </div>
+        <div class="col-sm-3">
+          <%= "posted by: Apartment #{issue.user.apartment_number}" %>
+        </div>
+        <div class="col-sm">
+          <%= "occured on: #{issue.start_date}" %>
+        </div>
+        <div class="col-sm">
+          <%= "resolved on: #{issue.end_date}" %>
+        </div>
+      </div>
+      <div class="d-none display-change pt-1">
+        <p>
+          <%= issue.body %>
+        </p>
+      </div>
+    </div>
+  <% end %>
+</div>

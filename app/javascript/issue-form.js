@@ -1,0 +1,10 @@
+$(document).ready(function(){
+  $("#issue_is_resolved_true").change(function(){
+    console.log("hello");
+    $("#end-date").toggleClass("d-none");
+  });
+  $("#issue_is_resolved_false").change(function(){
+    console.log("hello");
+    $("#end-date").toggleClass("d-none");
+  });
+})

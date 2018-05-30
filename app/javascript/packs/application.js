@@ -8,6 +8,9 @@
 // layout file, like app/views/layouts/application.html.erb
 
 import 'flashes';
+import 'issue-form';
+import 'issue-list';
+// import 'tabs';
 import '../plugins/flatpickr';
 
 //= require_tree .

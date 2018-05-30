@@ -10,7 +10,9 @@ class IssuesController < ApplicationController
   def create
     @issue = Issue.new(issue_params)
     @issue.user = current_user
-    @issue.save
+    if @issue.save!
+      redirect_to residents_path, notice: "Your issue has been added to the list"
+    end
   end
 
   def edit
@@ -19,16 +21,20 @@ class IssuesController < ApplicationController
 
   def update
     @issue = Issue.find(params[:id])
-    @issue.update(issue_params)
+    if @issue.update!(issue_params)
+      redirect_to residents_path, notice: "Your issue has been updated"
+    end
   end
 
   def delete
     @issue = Issue.find(params[:id])
-    @issue.destroy
+    if @issue.destroy!
+      redirect_to residents_path, notice: "Your issue has been deleted"
+    end
   end
 
   private
   def issue_params
-    require(:issue).permit(:title, :body, :start_date, :is_resolved, :end_date)
+    params.require(:issue).permit(:title, :body, :start_date, :is_resolved, :end_date)
   end
 end

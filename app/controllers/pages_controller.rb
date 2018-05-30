@@ -5,5 +5,8 @@ class PagesController < ApplicationController
   end
 
   def residents
+    @issues = Issue.all
+    @current_issues = @issues.where("is_resolved = ?", "false")
+    @past_issues = @issues.where("is_resolved = ?", "true")
   end
 end
