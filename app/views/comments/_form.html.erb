@@ -1,0 +1,9 @@
+<%= simple_form_for [@issue, @comment] do |f| %>
+  <%= @comment.errors.full_messages.join(', ') %>
+
+  <div class="form-inputs">
+    <%= f.input :content, label: false, placeholder: "comment on this issue here" %>
+  </div>
+  <br>
+  <%= f.button :submit, 'Submit', class: "btn-block btn-outline-primary" %>
+<% end %>
