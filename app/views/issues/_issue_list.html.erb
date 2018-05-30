@@ -1,5 +1,5 @@
 <div class="my-3">
-  <div>
+  <div class="current-issue-title">
     <h2>Current Issues</h2>
     <%= render 'issues/new_issue_modal.html.erb' %>
   </div>
@@ -24,6 +24,9 @@
         <p>
           <%= issue.body %>
         </p>
+        <%= link_to "Add a comment", "#", class: "small-link" %>
+        -
+        <%= link_to "Mark issue as resolved", issue_path(issue, {:issue => {is_resolved: "true"}}), method: :put, class: "small-link" %>
       </div>
     </div>
   <% end %>
@@ -54,6 +57,9 @@
         <p>
           <%= issue.body %>
         </p>
+        <%= link_to "Add a comment", "#", class: "small-link" %>
+        -
+        <%= link_to "Mark issue as ongoing", issue_path(issue, {:issue => {is_resolved: "false"}}), method: :put, class: "small-link" %>
       </div>
     </div>
   <% end %>

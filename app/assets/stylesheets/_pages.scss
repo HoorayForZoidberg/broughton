@@ -18,3 +18,11 @@ li {
 .clickable :hover {
   cursor: pointer;
 }
+.small-link {
+  font-size: 12px;
+}
+.current-issue-title {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+}
