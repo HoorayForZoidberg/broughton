@@ -26,7 +26,10 @@
         </p>
         <%= link_to "Add a comment", "#", class: "small-link" %>
         -
-        <%= link_to "Mark issue as resolved", issue_path(issue, {:issue => {is_resolved: "true"}}), method: :put, class: "small-link" %>
+        <%= link_to "Edit issue", "#editIssue_#{issue.id}", class: "small-link", data: {toggle: "modal", target: "#editIssue_#{issue.id}"} %>
+        <%= render 'issues/edit_issue_modal', issue: issue %>
+        -
+        <%= link_to "Mark issue as resolved", issue_path(issue, {:issue => {is_resolved: "true", end_date: Date.today}}), method: :put, class: "small-link" %>
       </div>
     </div>
   <% end %>
