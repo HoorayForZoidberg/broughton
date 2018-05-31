@@ -26,7 +26,8 @@
       <% end %>
     </div>
     <div class="col-xs-12 col-sm-3">
-      <button class="btn btn-outline-primary">Download Issues Report</button>
+      <button class="btn btn-outline-primary" data-toggle="modal" data-target="#report">Download Issues Report</button>
+      <%= render 'shared/modal', modal_id: "report", modal_title: "Issues Report", modal_body: "The report will be available in one week", submit: false %>
     </div>
     <div class="col-xs-12 col-sm-3">
       <%= link_to new_message_path do %>
