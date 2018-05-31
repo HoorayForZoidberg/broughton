@@ -1,0 +1,89 @@
+<div class="my-3">
+  <div class="current-issue-title">
+    <h2>Current Issues</h2>
+    <%= render 'issues/new_issue_modal.html.erb' %>
+  </div>
+  <% @current_issues.each do |issue| %>
+    <div class="container-fluid py-2 border-top border-bottom">
+      <div class="row">
+        <div class="col-xs-12 col-sm-6 clickable">
+          <strong>
+            <i class="fas fa-angle-right display-change"></i>
+            <i class="fas fa-caret-down d-none display-change"></i>
+            <%= issue.title.titleize %>
+          </strong>
+        </div>
+        <div class="col-sm-3">
+          <%= "posted by: Apartment #{issue.user.apartment_number}" %>
+        </div>
+        <div class="col-sm-3">
+          <%= "occured on: #{issue.start_date}" %>
+        </div>
+      </div>
+      <div class="d-none display-change pt-1">
+        <p>
+          <%= issue.body %>
+        </p>
+        <%= link_to "Add a comment", "#newCommentForIssue_#{issue.id}", class: "small-link", data: {toggle: "modal", target: "#newCommentForIssue_#{issue.id}"} %>
+        <%= render 'comments/new_comment_modal', issue: issue %>
+        -
+        <% if current_user == issue.user %>
+          <%= link_to "Edit issue", "#editIssue_#{issue.id}", class: "small-link", data: {toggle: "modal", target: "#editIssue_#{issue.id}"} %>
+          <%= render 'issues/edit_issue_modal', issue: issue %>
+          -
+        <% end %>
+        <%= link_to "Mark issue as resolved", issue_path(issue, {:issue => {is_resolved: "true", end_date: Date.today}}), method: :put, class: "small-link" %>
+      </div>
+      <div class="comments display-change d-none">
+        <% unless issue.comments.blank? %>
+          <strong><%= "Comments:" %></strong>
+          <% issue.comments.each do |comment| %>
+            <p>
+              <em><u><%= "Apartment #{comment.user.apartment_number}" %></u></em>
+              <%= " - #{comment.content}" %>
+            </p>
+            <% if current_user == comment.user %>
+              <%= link_to "Edit this comment", "#editCommentForIssue_#{issue.id}", class: "small-link", data: {toggle: "modal", target: "#editCommentForIssue_#{issue.id}"} %>
+              <%= render 'comments/edit_comment_modal', issue: issue, comment: comment %>
+            <% end %>
+            <br>
+            <br>
+          <% end %>
+        <% end %>
+      </div>
+    </div>
+  <% end %>
+</div>
+<div class="my-3">
+  <h2>Past Issues</h2>
+  <% @past_issues.each do |issue| %>
+    <div class="container-fluid py-2 border-top border-bottom">
+      <div class="row">
+        <div class="col-xs-12 col-sm-6 clickable">
+          <strong>
+            <i class="fas fa-angle-right display-change"></i>
+            <i class="fas fa-caret-down d-none display-change"></i>
+            <%= issue.title.titleize %>
+          </strong>
+        </div>
+        <div class="col-sm-3">
+          <%= "posted by: Apartment #{issue.user.apartment_number}" %>
+        </div>
+        <div class="col-sm">
+          <%= "occured on: #{issue.start_date}" %>
+        </div>
+        <div class="col-sm">
+          <%= "resolved on: #{issue.end_date}" %>
+        </div>
+      </div>
+      <div class="d-none display-change pt-1">
+        <p>
+          <%= issue.body %>
+        </p>
+        <%= link_to "Add a comment", "#", class: "small-link" %>
+        -
+        <%= link_to "Mark issue as ongoing", issue_path(issue, {:issue => {is_resolved: "false"}}), method: :put, class: "small-link" %>
+      </div>
+    </div>
+  <% end %>
+</div>

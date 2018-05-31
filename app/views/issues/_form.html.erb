@@ -1,0 +1,22 @@
+<%= simple_form_for issue do |f| %>
+  <%= issue.errors.full_messages.join(', ') %>
+
+  <div class="form-inputs">
+    <%= f.input :title, label: 'Issue title', placeholder: 'e.g. "elevator broken", "slow maintenance", etc.', required: true %>
+    <%= f.input :body, label: 'Describe your issue', placeholder: "Provide as much detail as you want", required: true %>
+    <%= f.input :start_date, label: 'When did this issue first occur?', required: true %>
+    <%= f.label "Has the issue been resolved?", required: true %>
+    <%= f.input :is_resolved,
+                :collection => [['Yes', true], ['No', false]],
+                :label => false,
+                :as => :radio_buttons,
+                :item_wrapper_class => 'inline mx-3',
+                :checked => false %>
+    <div id="end-date" class="d-none">
+      <%= f.label 'When was the issue resolved?' %>
+      <%= f.input :end_date, label: false %>
+    </div>
+  </div>
+  <br>
+  <%= f.button :submit, 'Submit', class: "btn-block btn-outline-primary" %>
+<% end %>

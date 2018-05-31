@@ -7,4 +7,9 @@ Rails.application.routes.draw do
   post 'contact', to: 'messages#create', as: 'create_message'
 
   get '/residents', to: 'pages#residents', as: 'residents'
+
+  resources :issues, except: [ :show ] do
+    resources :comments, except: [ :show ]
+  end
+
 end

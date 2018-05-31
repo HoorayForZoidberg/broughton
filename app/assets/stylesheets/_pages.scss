@@ -12,3 +12,21 @@
   max-width: 500px;
   margin: 20px auto;
 }
+li {
+  list-style-type: none;
+}
+.clickable :hover {
+  cursor: pointer;
+}
+.small-link {
+  font-size: 12px;
+}
+.current-issue-title {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+}
+.comments {
+  margin: 30px;
+  color: gray;
+}
