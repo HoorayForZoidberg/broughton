@@ -24,12 +24,32 @@
         <p>
           <%= issue.body %>
         </p>
-        <%= link_to "Add a comment", new_issue_comment_path(issue), class: "small-link" %>
+        <%= link_to "Add a comment", "#newCommentForIssue_#{issue.id}", class: "small-link", data: {toggle: "modal", target: "#newCommentForIssue_#{issue.id}"} %>
+        <%= render 'comments/new_comment_modal', issue: issue %>
         -
-        <%= link_to "Edit issue", "#editIssue_#{issue.id}", class: "small-link", data: {toggle: "modal", target: "#editIssue_#{issue.id}"} %>
-        <%= render 'issues/edit_issue_modal', issue: issue %>
-        -
+        <% if current_user == issue.user %>
+          <%= link_to "Edit issue", "#editIssue_#{issue.id}", class: "small-link", data: {toggle: "modal", target: "#editIssue_#{issue.id}"} %>
+          <%= render 'issues/edit_issue_modal', issue: issue %>
+          -
+        <% end %>
         <%= link_to "Mark issue as resolved", issue_path(issue, {:issue => {is_resolved: "true", end_date: Date.today}}), method: :put, class: "small-link" %>
+      </div>
+      <div class="comments display-change d-none">
+        <% unless issue.comments.blank? %>
+          <strong><%= "Comments:" %></strong>
+          <% issue.comments.each do |comment| %>
+            <p>
+              <em><u><%= "Apartment #{comment.user.apartment_number}" %></u></em>
+              <%= " - #{comment.content}" %>
+            </p>
+            <% if current_user == comment.user %>
+              <%= link_to "Edit this comment", "#editCommentForIssue_#{issue.id}", class: "small-link", data: {toggle: "modal", target: "#editCommentForIssue_#{issue.id}"} %>
+              <%= render 'comments/edit_comment_modal', issue: issue, comment: comment %>
+            <% end %>
+            <br>
+            <br>
+          <% end %>
+        <% end %>
       </div>
     </div>
   <% end %>

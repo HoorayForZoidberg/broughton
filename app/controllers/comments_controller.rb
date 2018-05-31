@@ -15,6 +15,20 @@ class CommentsController < ApplicationController
     end
   end
 
+  def update
+    @comment = Comment.find(params[:id])
+    if @comment.update(comment_params)
+      redirect_to residents_path, notice: "Your comment has been updated"
+    end
+  end
+
+  def delete
+    @issue = Issue.find(params[:id])
+    if @issue.destroy!
+      redirect_to residents_path, notice: "Your comment has been deleted"
+    end
+  end
+
   private
 
   def comment_params
