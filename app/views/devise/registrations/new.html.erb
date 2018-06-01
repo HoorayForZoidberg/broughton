@@ -6,7 +6,7 @@
 
     <div class="form-inputs">
       <% @apartments = [] %>
-      <% [2,3].each{ |num| ("A".."M").each {|letter| @apartments << ["#{num}#{letter}", "#{num}#{letter}"]}}  %>
+      <% [2,3].each{ |num| ("A".."N").each {|letter| @apartments << ["#{num}#{letter}", "#{num}#{letter}"]}}  %>
       <%= f.label "Apartment number: ", required: true %>
       <%= f.select :apartment_number, options_for_select(@apartments), autofocus: true %>
       <%= f.input :email, required: true %>
